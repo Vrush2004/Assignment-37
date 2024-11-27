@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <title>Google Meet UI</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left-container">
+            <div class="student" id="one"><span>V</span></div>
+            <div class="student" id="two"><span id="R">R</span></div>
+            <div class="student" id="three"><span id="S">S</span></div>
+            <div class="student" id="four"><span id="T">T</span></div>
+        </div>
+    </div>
+    <div class="search-container">
+        <p class="people">People</p>
+        <p class="add"><i class="fa-solid fa-user-plus"></i> Add People</p>
+        <input type="text" id="search" placeholder="Search for People" onkeyup="loadSearchResult()">
+        <p class="in-meet">IN MEETING</p>
+        <div id="students-container"></div>
+    </div>
+
+    <script>
+        const students = [
+            "Vrushali",
+            "Mohit",
+            "Sakshi",
+            "Pallavi",
+            "Mansi",
+            "Amol",
+            "Rohan",
+            "Rohit",
+            "Kavita",
+            "Sonali",
+            "Nikita"
+        ];
+
+        const studentsContainer = document.getElementById('students-container');
+
+        students.forEach((stud) => {
+            studentsContainer.innerHTML += `
+                <div class='student-card'>
+                    <i class="fa-solid fa-user"></i> ${stud}
+                </div>`;
+        });
+
+        function loadSearchResult() {
+            const searchText = document.getElementById('search').value.toLowerCase();
+            studentsContainer.innerHTML = "";
+
+            const filteredStudents = students.filter((stud) =>
+                stud.toLowerCase().includes(searchText)
+            );
+
+            filteredStudents.forEach((stud) => {
+                studentsContainer.innerHTML += `
+                    <div class='student-card'>
+                        <i class="fa-solid fa-user"></i> ${stud}
+                    </div>`;
+            });
+        }
+    </script>
+</body>
+</html>
